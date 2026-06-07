@@ -87,6 +87,7 @@ pipeline {
                 anyOf {
                     branch 'main'
                     branch pattern: 'hotfix*', comparator: 'GLOB'
+                    expression { return env.BRANCH_NAME == null }
                 }
             }
             steps {
