@@ -25,9 +25,10 @@ pipeline {
         stage('Generate Image Tag') {
             steps {
                 script {
-                    def branch = env.BRANCH_NAME.replaceAll('/', '-')
+                    def branch = (env.BRANCH_NAME ?: env.GIT_BRANCH?.replaceAll('origin/', '') ?: 'main').replaceAll('/', '-')
                     def timestamp = new Date().format('yyyyMMdd-HHmmss')
                     env.IMAGE_TAG = "${branch}-${timestamp}"
+                    echo "Image Tag: ${env.IMAGE_TAG}"
                 }
             }
         }
@@ -38,6 +39,8 @@ pipeline {
                     branch pattern: 'release*', comparator: 'GLOB'
                     branch 'main'
                     branch pattern: 'hotfix*', comparator: 'GLOB'
+                    // Allow regular pipeline jobs (BRANCH_NAME is null)
+                    expression { return env.BRANCH_NAME == null }
                 }
             }
             steps {
