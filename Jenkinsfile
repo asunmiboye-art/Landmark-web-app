@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs 'Node 18'
+        nodejs 'NodeJS-18'
     }
     environment {
         DOCKER_REPO = 'aytechy/landmark-web-app'
