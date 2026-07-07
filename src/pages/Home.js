@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <section className="hero">
         <h1>Landmark Technologies</h1>
-        <p>Premier DevOps & AI Training Program. Master the tools and practices that drive modern software delivery and artificial intelligence.</p>
+        <p>Premier DevOps & AI Training Program. Master the tools and practices that drive modern software delivery and artificial intelligence. — v2.0</p>
       </section>
       <div className="container">
         <div className="features">
