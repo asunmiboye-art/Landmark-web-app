@@ -4,7 +4,7 @@ pipeline {
         nodejs 'NodeJS-18'
     }
     environment {
-        DOCKER_REPO = 'chafah/landmark-web-app'
+        DOCKER_REPO = 'aytechy/landmark-web-app'
         AWS_REGION = 'us-east-1'
         EKS_CLUSTER = 'landmark-eks'
     }
@@ -61,8 +61,8 @@ pipeline {
                         sed -i 's/name: landmark/name: develop/g' k8s/namespace.yml
                         sed -i 's/namespace: landmark/namespace: develop/g' k8s/*.yml
                         sed -i "s|image: landmark-technologies:latest|image: ${DOCKER_REPO}:${IMAGE_TAG}|g" k8s/app-deployment.yml
-                        kubectl apply -f k8s/namespace.yml
-                        kubectl apply -f k8s/
+                        /usr/local/bin/kubectl apply -f k8s/namespace.yml
+                        /usr/local/bin/kubectl apply -f k8s/
                     """
                 }
             }
@@ -76,8 +76,8 @@ pipeline {
                         sed -i 's/name: landmark/name: staging/g' k8s/namespace.yml
                         sed -i 's/namespace: landmark/namespace: staging/g' k8s/*.yml
                         sed -i "s|image: landmark-technologies:latest|image: ${DOCKER_REPO}:${IMAGE_TAG}|g" k8s/app-deployment.yml
-                        kubectl apply -f k8s/namespace.yml
-                        kubectl apply -f k8s/
+                        /usr/local/bin/kubectl apply -f k8s/namespace.yml
+                        /usr/local/bin/kubectl apply -f k8s/
                     """
                 }
             }
@@ -97,8 +97,8 @@ pipeline {
                         sed -i 's/name: landmark/name: production/g' k8s/namespace.yml
                         sed -i 's/namespace: landmark/namespace: production/g' k8s/*.yml
                         sed -i "s|image: landmark-technologies:latest|image: ${DOCKER_REPO}:${IMAGE_TAG}|g" k8s/app-deployment.yml
-                        kubectl apply -f k8s/namespace.yml
-                        kubectl apply -f k8s/
+                        /usr/local/bin/kubectl apply -f k8s/namespace.yml
+                        /usr/local/bin/kubectl apply -f k8s/
                     """
                 }
             }
